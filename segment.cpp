@@ -12,8 +12,19 @@ using namespace std;
 #define readr(b,n) for(lli i=0;i<n;i++){cin>>b[i];}
 #define printarr(arr,n) FOR(0,n){cout<<arr[i]<<" "; }cout<<endl;
 const long int MOD = 1000000007;
-
-
+void hupdate(int *tree,int tl,int tr,int i,int diff,int index){
+	if(i<tl || i>tr)
+		return;
+	tree[index] = tree[index]+diff;
+	if(tl!=tr){
+		int mid = tl+(tr-tl)/2;
+		hupdate(tree,tl,mid,i,diff,index*2+1);
+		hupdate(tree,mid+1,tr,i,diff,index*2+2);
+	}
+}
+void update(int *tree,int arr[],int index,int num,int n){
+	hupdate(tree,0,n-1,index,num-arr[index],0);
+}
 int qhelper(int *tree,int tl,int tr,int l,int r,int index){
 	if(l>tr || r<tl)
 		return 0;
@@ -54,6 +65,7 @@ void solve(){
 	readr(arr,n);
 	int *tr = create_segment_tree(arr,n);
 	cout<<endl;
+	update(tr,arr,3,3,n);
 	cout<<solve_query(tr,n,3,4);
 
 }
