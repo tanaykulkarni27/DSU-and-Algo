@@ -15,14 +15,12 @@ example the average is (1 + 2 + 9 + 2 + 6)/5 = 4.
 
 int mn(int arr[],int n){
 	int ans = 0;
-	int md = (n-1)/2;
-	int tmp = -1;
+	
 	int x = 0;
-	if(n%2 == 0)	
-		x = (arr[md]+arr[md+1])/2;
-	else
-		x = arr[md];
-	return x*x;
+	for(int i = 0;i<n;i++)
+		ans+=arr[i];
+	x = (ans/n);
+	return x;
 
 }
 int main(){
