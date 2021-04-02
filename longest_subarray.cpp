@@ -15,7 +15,7 @@ using namespace std;
 #define lli long long int 
 #define read(a) cin>>a;
 #define readr(b,n) for(lli i=0;i<n;i++){cin>>b[i];}
-#define printarr(arr,n) FOR(0,n){cout<<arr[i]<<" "; }cout<<endl;
+#define printarr(arr,n)  FOR(0,n){cout<<arr[i]<<" "; }cout<<endl;
 const int MOD = 1000000007;
 int subarray(int arr[],int n){
 	int ml = 1,cl = 1;
