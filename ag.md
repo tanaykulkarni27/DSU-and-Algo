@@ -4,4 +4,4 @@
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/edit/main/gd_coin.cpp"> Greedy Algorithm (Coin Problem refer cses handbook) </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/edit/main/seg_xor.cpp"> XOR of elements in given ranges ( Try to find the solution in logrithmic time) </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/edit/main/lg_palindrome.cpp"> Find the largest palindromic substring in given string (optimal solution then this is mancher's algorithm ) </a><br>
-
+<a href="https://github.com/tanaykulkarni27/DSU-and-Algo/edit/main/window_sliding.cpp"> Given array of n size find the maximum sum subarray of size k </a><br>
