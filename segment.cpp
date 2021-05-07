@@ -1,84 +1,98 @@
-#include<stdio.h>
-#include<iostream>
 #include<bits/stdc++.h>
-#include<map>
-#include <vector> 
-#include<string>
 using namespace std;
-#define sz(a) sizeof(a)
-#define FOR(start,end) for(int i=start;i<end;i++)
-#define lli long long int 
-#define read(a) cin>>a;
-#define readr(b,n) for(lli i=0;i<n;i++){cin>>b[i];}
-#define printarr(arr,n) FOR(0,n){cout<<arr[i]<<" "; }cout<<endl;
-const long int MOD = 1000000007;
-void hupdate(int *tree,int tl,int tr,int i,int diff,int index){
-	if(i<tl || i>tr)
-		return;
-	tree[index] = tree[index]+diff;
-	if(tl!=tr){
-		int mid = tl+(tr-tl)/2;
-		hupdate(tree,tl,mid,i,diff,index*2+1);
-		hupdate(tree,mid+1,tr,i,diff,index*2+2);
+void __print(int x) {cerr << x;}
+void __print(long x) {cerr << x;}
+void __print(long long x) {cerr << x;}
+void __print(unsigned x) {cerr << x;}
+void __print(unsigned long x) {cerr << x;}
+void __print(unsigned long long x) {cerr << x;}
+void __print(float x) {cerr << x;}
+void __print(double x) {cerr << x;}
+void __print(long double x) {cerr << x;}
+void __print(char x) {cerr << '\'' << x << '\'';}
+void __print(const char *x) {cerr << '\"' << x << '\"';}
+void __print(const string &x) {cerr << '\"' << x << '\"';}
+void __print(bool x) {cerr << (x ? "true" : "false");}
+
+template<typename T, typename V>
+void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
+template<typename T>
+void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
+void _print() {cerr << "]\n";}
+template <typename T, typename... V>
+void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+#ifndef ONLINE_JUDGE
+#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
+#else
+#define debug(x...)
+#endif
+class NumArray {
+public:
+    vector<int>tree;
+    vector<int>arr;
+    int n;
+    NumArray(vector<int>& nums) {
+        n = nums.size();
+        arr.resize(n);
+        for(int i = 0;i<n;i++){
+			arr[i] = nums[i];
+		}
+		
+        create_tree();
+    }
+    void create_tree(){
+		tree.resize(n*2);
+		for(int i = n,j=0;i<2*n;i++,j++){
+			tree[i] = arr[i-n];
+		}
+		for(int i = n-1;i>0;i--){
+            tree[i] = tree[i*2]+tree[i*2+1];
+        }
+		//debug(tree);
+		
 	}
-}
-void update(int *tree,int arr[],int index,int num,int n){
-	hupdate(tree,0,n-1,index,num-arr[index],0);
-}
-int qhelper(int *tree,int tl,int tr,int l,int r,int index){
-	if(l>tr || r<tl)
-		return 0;
-	if(l <= tl && r >= tr)
-		return tree[index];
 	
-	else{
-		int mid = tl+(tr-tl)/2;
-		return qhelper(tree,tl,mid,l,r,index*2+1)+qhelper(tree,mid+1,tr,l,r,index*2+2);
+    void update(int index, int val) {
+		index+=n;
+		int parent = index/2;
+		int diffs = val - tree[index];
+		tree[index] = val;
+		while(parent > 0){
+			//debug(parent);
+			tree[parent] += diffs;
+			parent/=2;
+		}
 	}
-}
-int solve_query(int tree[],int n,int l,int r){
-	return qhelper(tree,0,n-1,l,r,0);
-}
-int helper(int arr[],int *tree,int n,int sz,int l,int r,int index){
-	if(l==r){
-		tree[index] = arr[l]; 
-		return arr[l];
-	}
-	else{
-		int mid = l+(r-l)/2;
-		tree[index] = helper(arr,tree,n,sz,l,mid,index*2+1)+
-					  helper(arr,tree,n,sz,mid+1,r,index*2+2);
-		return tree[index];		
-	}
-}
-int *create_segment_tree(int arr[],int n){
-	int ss = n+(n-1);
-	int *tree = new int[ss];
-	memset(tree,0,sz(0));
-	helper(arr,tree,n,ss,0,n-1,0);
-	return tree;
-}
-void solve(){
-	int n = 5;
-	read(n)
-	int arr[n];
-	readr(arr,n);
-	int *tr = create_segment_tree(arr,n);
-	cout<<endl;
-	update(tr,arr,3,3,n);
-	cout<<solve_query(tr,n,3,4);
-
-}
-
+    
+    int sumRange(int l, int r) {
+		l+=n;
+		r+=n;
+		int res = 0;
+		while(l<=r){
+				if(l%2 == 1){
+					res+=tree[l];
+					l++;
+				}
+				if(r%2 == 0){
+					res = tree[r];
+					r--;
+				}
+				l/=2;
+				r/=2;
+		}
+		return res;
+    }
+};
 int main(){
-	solve();
+	vector<int>arr(3);
+	arr[0] = 1;
+	arr[1] = 3;
+	arr[2] = 5;
+	NumArray obj = NumArray(arr);
+	//debug(obj.tree);
+	cout<<obj.sumRange(0,2)<<" ";
+	obj.update(1,2);
+	cout<<obj.sumRange(0,2)<<" ";
+	//debug(obj.tree);
 	return 0;
 }
-/* 
-5
-3
-2
-4
-1
-5
-*/
