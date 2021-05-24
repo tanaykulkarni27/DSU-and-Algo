@@ -1,4 +1,6 @@
-<input type="text">
+<hr>
+<input type="text"></input>
+<br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/longest_subarray.cpp"> Longest Subarray in increasing order </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/kadane.cpp">	Find the maximum sum  of a subarray in given array </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/euclid.cpp"> Euclid's Algorithm (gcd of two number) </a> <br>
