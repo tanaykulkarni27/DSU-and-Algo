@@ -32,14 +32,16 @@ void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v..
 #else
 #define debug(x...)
 #endif
-int pw(int a,int n,int md){
-	if(n == 0)
-		return 1;
-	int hlf = pw(a,n/2,md)%md;
-	if(n%2 == 0)
-		return (hlf*hlf)%md;
-	else
-		return ((hlf*hlf)*a)%md;
+long long binpow(int a, int b, long long m) {
+    a %= m;
+    long long res = 1;
+    while (b > 0) {
+        if (b & 1)
+            res = res * a % m;
+        a = a * a % m;
+        b >>= 1;
+    }
+    return res;
 }
 void testcase(){
 	int a,n,p;
