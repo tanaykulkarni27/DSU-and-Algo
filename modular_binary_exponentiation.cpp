@@ -1,0 +1,58 @@
+/*
+	Author :- Tanay Kulkarni
+	Date   :- 24-5-2021
+	Time   :- 15:02:43.381862
+	Name   :- solve.cpp
+*/
+#include<bits/stdc++.h>
+using namespace std;
+void __print(int x) {cerr << x;}
+void __print(long x) {cerr << x;}
+void __print(long long x) {cerr << x;}
+void __print(unsigned x) {cerr << x;}
+void __print(unsigned long x) {cerr << x;}
+void __print(unsigned long long x) {cerr << x;}
+void __print(float x) {cerr << x;}
+void __print(double x) {cerr << x;}
+void __print(long double x) {cerr << x;}
+void __print(char x) {cerr << '\'' << x << '\'';}
+void __print(const char *x) {cerr << '\"' << x << '\"';}
+void __print(const string &x) {cerr << '\"' << x << '\"';}
+void __print(bool x) {cerr << (x ? "true" : "false");}
+
+template<typename T, typename V>
+void __print(const pair<T, V> &x) {cerr << '{'; __print(x.first); cerr << ','; __print(x.second); cerr << '}';}
+template<typename T>
+void __print(const T &x) {int f = 0; cerr << '{'; for (auto &i: x) cerr << (f++ ? "," : ""), __print(i); cerr << "}";}
+void _print() {cerr << "]\n";}
+template <typename T, typename... V>
+void _print(T t, V... v) {__print(t); if (sizeof...(v)) cerr << ", "; _print(v...);}
+#ifndef ONLINE_JUDGE
+#define debug(x...) cerr << "[" << #x << "] = ["; _print(x)
+#else
+#define debug(x...)
+#endif
+int pw(int a,int n,int md){
+	if(n == 0)
+		return 1;
+	int hlf = pw(a,n/2,md)%md;
+	if(n%2 == 0)
+		return (hlf*hlf)%md;
+	else
+		return ((hlf*hlf)*a)%md;
+}
+void testcase(){
+	int a,n,p;
+	cin>>a>>n>>p;
+	cout<<pw(a,n,p);
+puts("");
+}
+int main(){
+int t;
+cin>>t;
+for(int i = 1;i<=t;i++){
+		cout<<"Case #"<<i<<": ";
+		testcase();
+}
+return 0;
+}
