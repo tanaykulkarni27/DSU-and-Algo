@@ -7,3 +7,4 @@
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/window_sliding.cpp"> Given array of n size find the maximum sum subarray of size k </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/primality.cpp"> primality test of n in O(sqrt(n)) </a><br>
 <a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/nbasem.cpp"> print the numbrer n in base m </a><br>
+<a href="https://github.com/tanaykulkarni27/DSU-and-Algo/blob/main/modular_binary_exponentiation.cpp">Binary Exponentiation in modular arithmatic</a><br>
